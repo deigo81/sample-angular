@@ -1,0 +1,53 @@
+<app-person-form-modal *ngIf="selectedPerson" [person]="person" [modeOpen]="modeOpen"></app-person-form-modal>
+
+<div class="card border-primary mb-3">
+    <div class="card-header">
+        <h2 class="text-center">
+            List of people
+        </h2>    
+    </div>
+    <div class="card-body text-primary">
+
+    <div class="my-3 text-right">
+        <button  type="button" class="btn btn-rounded btn-primary" (click)="cratePerson('CREATE')" type="button">Create person</button>
+    </div>
+          <div *ngIf="persons.length  < 1" class="alert alert-info">
+               
+            The table is empty.
+          </div>   
+
+        <table class="table table-striped " *ngIf="persons.length >0" >
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Birthday</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let person of persons">
+                    <td >{{person.id}}</td>
+                    <td >{{person.name}}</td>
+                    <td >{{person.surname}}</td>
+                    <td >{{person.email}}</td>
+                    <td >{{person.birthday | date: 'dd/MM/yyyy'}}</td>
+                    <th>
+                        <button type="button" (click)="openModal(person,'CONSULT')" name="consult" id="consult" class="btn btn-info btn-sm ">Consult</button>
+                    </th>
+                    <th>
+                        <button type="button" (click)="openModal(person,'UPDATE')" name="update" id="update" class="btn btn-success btn-sm ">Modify</button>
+                    </th>
+                    <th>
+                        <button type="button" (click)="openModal(person,'DELETE')" name="delete" id="delete" class="btn btn-danger btn-sm ">Delete</button>
+                    </th>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
